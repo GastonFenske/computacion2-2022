@@ -17,6 +17,7 @@ def hijo():
         else:
             print(f'{os.getpid()} - {os.getppid()}: {suma}')
             os._exit(0)
+    os.wait()
 
 def ayuda_uso() -> str:
     return f"""[Para ejecutar] python3 ejercicio1.py -n **numero_hjos**
