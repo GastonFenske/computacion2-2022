@@ -13,6 +13,7 @@ def hijo():
             print("Inicio de la ejecucion del proceso hijo")
             print(f'{os.getpid()} - {os.getppid()}: {suma}')
             print("Fin de la ejecucion del proceso hijo")
+            os._exit(0)
         else:
             print(f'{os.getpid()} - {os.getppid()}: {suma}')
             os._exit(0)
