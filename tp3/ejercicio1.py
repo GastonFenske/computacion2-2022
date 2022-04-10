@@ -13,11 +13,9 @@ def hijo():
             print("Inicio de la ejecucion del proceso hijo")
             print(f'{os.getpid()} - {os.getppid()}: {suma}')
             print("Fin de la ejecucion del proceso hijo")
-            os._exit(0)
         else:
             print(f'{os.getpid()} - {os.getppid()}: {suma}')
-            os._exit(0)
-    os.wait()
+        os._exit(0)
 
 def ayuda_uso() -> str:
     return f"""[Para ejecutar] python3 ejercicio1.py -n **numero_hjos**
@@ -33,10 +31,11 @@ for (op,ar) in opt:
     elif op == '-v':
         modo_verboso = True
 
-try:
-    for i in range(num_hjos):
-        hijo()
-except NameError:
-    pass
+
+for i in range(num_hjos):
+    hijo()
+for i in range(num_hjos):
+        os.wait()
+
 
 
