@@ -40,7 +40,7 @@ def escribir_archivo(name: str):
 def leer_archivo(name: str):
     fd = open(str(name), "r")
     lines = fd.readlines()
-    print(f"[Archivo] {lines}")
+    print(f"[Archivo] -> {lines[0]}")
 
 
 if __name__ == '__main__':
