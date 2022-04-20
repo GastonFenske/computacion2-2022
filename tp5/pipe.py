@@ -14,14 +14,14 @@ def leer_archivo():
     file = open(file_to_read, 'r')
     return file.readlines()
 
-lineas_recividas = []
+lineas_recibidas = []
 def crear_hijo(line):
     if not os.fork():
         os.write(w, line[::-1].encode('ascii'))
         os._exit(0)
     else:
         value = os.read(r, 100)
-        lineas_recividas.append(value.decode())
+        lineas_recibidas.append(value.decode())
 
 
 if __name__ == '__main__':
@@ -33,7 +33,7 @@ if __name__ == '__main__':
     for line in lines:
         os.wait()
 
-    for line in lineas_recividas:
+    for line in lineas_recibidas:
         print(line)
 
 
