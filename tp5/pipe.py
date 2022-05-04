@@ -19,6 +19,7 @@ def crear_hijo(line):
     if not os.fork():
         os.write(w, line[::-1].encode('ascii'))
         os._exit(0)
+    #Hay que poner a todos los hijos a trabajar y despues leer, las lineas se la envio por otro pipep
     else:
         value = os.read(r, 100)
         lineas_recibidas.append(value.decode())
