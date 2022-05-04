@@ -20,9 +20,12 @@ def handler_padre(s, f):
     linea = memoria.readline()
     print(f'El padre acaba de recibir desde H1: {linea.decode()}')
 
-    # os.kill(hijos_pidds[1], signal.SIGUSR1) # enviar
+    os.kill(hijos_pidds[1], signal.SIGUSR1) # enviar
 
-def handler_h2_creado(): pass
+def handler_h2_creado():
+    linea = memoria.readline()
+    with open(,¡....º) as archivo:
+        archivo.write(....)
 
 # def handler_h2(s, f):
 #     linea = memoria.readline()
@@ -32,38 +35,48 @@ linea1 = 'hola soy la linea 1\n'
 linea2 = 'hola soy la linea 2\n'
 hijos_pidds = []
 
-pidh1 = 0
-if not os.fork():
-    pidh1 += os.getpid()
+pidh1 = os.fork():
+if pidh1 ==0:
     # hijos_pidds.append(pid)
     # print(hijos_pidds)
     # print(os.getpid())
     print(f'Soy H1 mi pid es: {pidh1} y mi ppid es: {os.getppid()}')
     # print(f'Soy el H1 escribiendo: {linea1}')
-    memoria.write(linea1.encode('ascii'))
+    for linea1 in sys.stdin:
+
+        memoria.write(linea1.encode('ascii'))
+        os.kill(os.getppid(), signal.SIGUSR1)
+        
     # signal.signal(signal.SIGUSR2, handler_h2_creado)
     # signal.pause()
     time.sleep(2)
-    os.kill(os.getppid(), signal.SIGUSR1)
 
     # if os.getpid() == hijos_pidds[0]:
     #     print(f'Soy el H1 escribiendo: {linea1}')
     #     memoria.write(linea1.encode('ascii'))
     #     os.kill(os.getppid(), signal.SIGUSR1)
-    # os._exit(0)
-else:
-    # os.wait()
-    print(f'Soy el padre y mi pid es: {os.getpid()}')
-    signal.signal(signal.SIGUSR1, handler_padre)
+    os._exit(0)
+
+# esto es el padre
+pidh2 = os.fork()
+if pidh2 ==0:
+    signal.signal(signal.SIGUSR1, handler_h2)
+    while True:
+        signal.pause()
+    # print(pidh1, 'pidh1 en h2')
+    pid = os.getpid()
+    # os.kill(pidh1, signal.SIGUSR2)
+    # hijos_pidds.append(pid)
+    print(f'Soy H2 mi pid es: {pid} y mi ppi es: {os.getppid()}')
+    os._exit(0)
+
+# esto es el padre
+# os.wait()
+print(f'Soy el padre y mi pid es: {os.getpid()}')
+signal.signal(signal.SIGUSR1, handler_padre)
+while True:
     signal.pause()
-    time.sleep(2)
-    os.wait()
-    if not os.fork():
-        # print(pidh1, 'pidh1 en h2')
-        pid = os.getpid()
-        # os.kill(pidh1, signal.SIGUSR2)
-        # hijos_pidds.append(pid)
-        print(f'Soy H2 mi pid es: {pid} y mi ppi es: {os.getppid()}')
+os.wait()
 
 
 
