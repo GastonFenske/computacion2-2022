@@ -10,9 +10,6 @@ except getopt.GetoptError as error:
     print(f'Ha habido un error: {error}')
     exit()
 
-cacl: str
-num_process: int
-path: str
 for (op,ar) in opt:
     if op == '-p':
        num_process = int(ar)
@@ -67,6 +64,33 @@ def log(matriz):
         matriz_nueva.append(nueva_fila)
     return matriz_nueva
 
+def calculator(matriz, fun):
+    global matriz_nueva
+    for fila in matriz:
+        nueva_fila = []
+        for elemento in fila:
+            elemento = calcs(fun, elemento)
+            nueva_fila.append(elemento)
+        matriz_nueva.append(nueva_fila)
+    return matriz_nueva
+
+def log(elemento):
+    return log10(int(elemento))
+
+def raiz(elemento):
+    return sqrt(int(elemento))
+
+def pot(elemento):
+    return int(elemento)**int(elemento)
+
+def calcs(fun, elemento):
+    calcs = {
+        'pot': pot(elemento),
+        'raiz': raiz(elemento),
+        'log': log(elemento)
+    }
+    return calcs[fun]
+
 calcs = {
     'pot': pot,
     'raiz': raiz,
@@ -75,7 +99,6 @@ calcs = {
 
 if __name__ == '__main__':
     pool = mp.Pool(processes=num_process)
-    # results = pool.map(funcion_calculo, [[[1, 2, 3], [4, 5, 6]]])
-    results = pool.map(calcs[calc], [format_lines(path=path)])
+    results = pool.starmap(calculator, [[format_lines(path=path)], [calc]])
     print(results[0])
 
