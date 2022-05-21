@@ -64,13 +64,13 @@ def log(matriz):
         matriz_nueva.append(nueva_fila)
     return matriz_nueva
 
-def calculator(matriz):
+def calculator(matriz, fun='pot'):
     print(matriz)
     global matriz_nueva
     for fila in matriz:
         nueva_fila = []
         for elemento in fila:
-            elemento = calcs('pot', elemento)
+            elemento = calcss(fun, elemento)
             nueva_fila.append(elemento)
         matriz_nueva.append(nueva_fila)
     return matriz_nueva
@@ -84,7 +84,7 @@ def raiz(elemento):
 def pot(elemento):
     return int(elemento)**int(elemento)
 
-def calcs(fun, elemento):
+def calcss(fun, elemento):
     calcs = {
         'pot': pot(elemento),
         'raiz': raiz(elemento),
@@ -92,14 +92,14 @@ def calcs(fun, elemento):
     }
     return calcs[fun]
 
-calcs = {
-    'pot': pot,
-    'raiz': raiz,
-    'log': log
-}
+# calcs = {
+#     'pot': pot,
+#     'raiz': raiz,
+#     'log': log
+# }
 
 if __name__ == '__main__':
     pool = mp.Pool(processes=num_process)
-    results = pool.map(calcs[calc], [format_lines(path=path)])
+    results = pool.map(calculator, [format_lines(path=path)])
     print(results[0])
 
