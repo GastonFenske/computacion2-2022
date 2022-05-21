@@ -100,6 +100,6 @@ calcs = {
 
 if __name__ == '__main__':
     pool = mp.Pool(processes=num_process)
-    results = pool.map(log, [format_lines(path=path)])
+    results = pool.map(calcs[calc], [format_lines(path=path)])
     print(results[0])
 
