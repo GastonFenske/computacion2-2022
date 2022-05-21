@@ -64,7 +64,8 @@ def log(matriz):
         matriz_nueva.append(nueva_fila)
     return matriz_nueva
 
-def calculator(matriz, fun):
+def calculator(matriz, fun='pot'):
+    print(matriz)
     global matriz_nueva
     for fila in matriz:
         nueva_fila = []
@@ -99,6 +100,6 @@ calcs = {
 
 if __name__ == '__main__':
     pool = mp.Pool(processes=num_process)
-    results = pool.starmap(calculator, [[format_lines(path=path)], [calc]])
+    results = pool.starmap(calculator, [[format_lines(path=path)]])
     print(results[0])
 
