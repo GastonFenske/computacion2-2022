@@ -1,1 +1,1 @@
-# Repositorio de Automatas y gramaticas, UNIVERSIDAD DE MENDOZA 2022
+# Repositorio de Computacion 2, UNIVERSIDAD DE MENDOZA 2022
