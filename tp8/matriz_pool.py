@@ -85,6 +85,7 @@ def pot(elemento):
     return int(elemento)**int(elemento)
 
 def calcss(fun, elemento):
+    # print(fun, 'fun', elemento, 'elemento')
     calcs = {
         'pot': pot(elemento),
         'raiz': raiz(elemento),
@@ -92,14 +93,8 @@ def calcss(fun, elemento):
     }
     return calcs[fun]
 
-# calcs = {
-#     'pot': pot,
-#     'raiz': raiz,
-#     'log': log
-# }
-
 if __name__ == '__main__':
     pool = mp.Pool(processes=num_process)
-    results = pool.map(calculator, [format_lines(path=path)])
+    results = pool.map(calculator, zip(format_lines(path=path), format_lines(path=path)))
     print(results[0])
 
