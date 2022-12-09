@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "http": "^0.0.1-security",
+    "socket.io-client": "^4.5.3",
+    "websocket": "^1.0.34",
+    "ws": "^8.11.0"
+  }
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proof</title>
+</head>
+<body>
+    <h1>Aca van a llegar los mensajes: </h1>
+    <h2>por ahora nada...</h2>
+
+    <script>
+
+        const ws = new WebSocket('ws://localhost:1234');
+
+        ws.addEventListener('open', () => {
+            console.log('Conectado al servidor');
+        });
+
+        ws.send('Hola desde el cliente');
+        
+        ws.addEventListener('message', (data) => {
+            console.log(data);
+        });
+
+    </script>
+
+</body>
+</html>
